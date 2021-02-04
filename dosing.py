@@ -20,7 +20,7 @@ def get_input():
     print("Enter patient weight followed blpy units of kg or lb.")
     print("Examples:  65.3 lb      21.0 kg")
     weight_input = input("Enter weight: ")
-    data_manipulation(weight_input, diagnosis)
+    return weight_input, diagnosis
 
 def data_manipulation(weight_input, diagnosis):
     ##Data manipulation
@@ -32,7 +32,7 @@ def data_manipulation(weight_input, diagnosis):
     dosages_mg_per_kg = [30, 10, 10, 12]
     dosage_mg_per_kg = dosages_mg_per_kg[diagnosis-1]
     dosage_mg_first_day = weight * dosage_mg_per_kg
-    do_output(dosage_mg_first_day, weight)
+    return dosage_mg_first_day, weight
     
 def do_output(dosage_mg_first_day, weight):
     ## Output
@@ -41,7 +41,11 @@ def do_output(dosage_mg_first_day, weight):
     print("  the correct dosage is {:.1f} mg the first day"
           .format(dosage_mg_first_day))
 
+def dosing_function():
+    weight, diag = get_input()
+    dosage_amount, weight = data_manipulation(weight, diag)
+    do_output(dosage_amount, weight)
 
 if __name__ == '__main__':
-    get_input
+    dosing_function()
 
